@@ -1,6 +1,8 @@
 # plotly-challenge
-Belly Button Biodiversity data - Plotly project - Usha Chari
-(Deplyed to : https://usrini1215.github.io/plotly-challenge/)
+Belly Button Biodiversity data 
+- Plotly project : Usha Chari
+
+(Deployed to : https://usrini1215.github.io/plotly-challenge/)
 
 
 # Plot.ly - Belly Button Biodiversity
@@ -60,4 +62,4 @@ I used "python -m http.server" on the terminal to set up a python based web serv
 - - -
 
 © 2020 Copyright Usha Chari 
-Plotly Belly Button biodiversity
+## Plotly Belly Button biodiversity project
