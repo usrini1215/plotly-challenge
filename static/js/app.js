@@ -148,7 +148,7 @@ function plotGaugechart(id) {
             value: wfreq,
             title: { text: "Belly Button Washing Frequency" },
             type: "indicator",
-            mode: "gauge+number"
+            mode: "gauge+number+delta"
         }
     ];
 
