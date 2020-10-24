@@ -1,8 +1,9 @@
 # plotly-challenge
 Belly Button Biodiversity data - Plotly project - Usha Chari
+(Deplyed to : https://usrini1215.github.io/plotly-challenge/)
 
 
-# Plot.ly Homework - Belly Button Biodiversity
+# Plot.ly - Belly Button Biodiversity
 
 ![Bacteria by filterforge.com](Images/bacteria.jpg)
 
@@ -38,7 +39,8 @@ Data as in `samples.json`.
         *  `otu_labels` for the text values.
 
 
-3. A gauge Chart from <https://plot.ly/javascript/gauge-charts/> to plot the weekly washing frequency of the individual.  (I attempted this just to show the basic washing frequence, need to update to show the X and Y values)
+3. A gauge Chart from <https://plot.ly/javascript/gauge-charts/> to plot the weekly washing frequency of the individual.  
+(I attempted this just to show the basic washing frequency, and need to further update to show the X and Y values)
 
 4.  An individual's demographic information is also displayed based on the choice.
 
@@ -55,8 +57,7 @@ I used "python -m http.server" on the terminal to set up a python based web serv
 
 
 
-
 - - -
 
-© 2020 Copyright 
-Usha Chari Plotly project
+© 2020 Copyright Usha Chari 
+Plotly Belly Button biodiversity
