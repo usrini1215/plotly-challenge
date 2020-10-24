@@ -13,6 +13,8 @@ d3.json("samples.json").then((data)=> {
     });
 
     plotBarBubblecharts(data.names[0]);
+    dispDemodata(data.names[0]);
+    plotGaugechart(data.names[0])
 
 });
 
@@ -58,22 +60,23 @@ function plotBarBubblecharts(id) {
     
             // create layout variable to set plots layout
             var layout = {
-                title: "Top 10 OTU",
+                title: "Top 10 OTU Bar chart for Subject chosen",
                 yaxis:{
                     tickmode:"linear",
                 },
                 margin: {
                     l: 110,
                     r: 110,
-                    t: 110,
-                    b: 50
+                    t: 40,
+                    b: 20
                 }
             };
     
             // create the bar plot
         Plotly.newPlot("bar", data, layout);
-            // The bubble chart
-            var trace1 = {
+
+        // The bubble chart
+        var trace1 = {
                 x: sampledata.samples[newindex].otu_ids,
                 y: sampledata.samples[newindex].sample_values,
                 mode: "markers",
@@ -83,17 +86,17 @@ function plotBarBubblecharts(id) {
                 },
                 text:  sampledata.samples[newindex].otu_labels
     
-            };
+        };
     
-            // set the layout for the bubble plot
-            var layout_2 = {
+        // set the layout for the bubble plot
+        var layout_2 = {
                 xaxis:{title: "OTU ID"},
                 height: 500,
-                width: 900
-            };
+                width: 1000
+        };
     
-            // creating data variable 
-            var data1 = [trace1];
+        // creating data variable 
+        var data1 = [trace1];
     
         // create the bubble plot
         Plotly.newPlot("bubble", data1, layout_2); 
@@ -101,10 +104,70 @@ function plotBarBubblecharts(id) {
         });
     }  
 
-    // create the function for the change event
+    function dispDemodata(id) {
+        d3.json("samples.json").then((data)=> {
+        // get the metadata info for the demographic panel
+        var metadata = data.metadata;
+        
+        console.log(metadata)
+        
+        // filter meta data info by id
+        var result = metadata.filter(meta => meta.id.toString() === id)[0];
+        // select demographic panel to put data
+        var demographicInfo = d3.select("#sample-metadata");
+                
+        // empty the demographic info panel each time before getting new id info
+        demographicInfo.html("");
+        
+        // grab the necessary demographic data data for the id and append the info to the panel
+        Object.entries(result).forEach((key) => {   
+                demographicInfo.append("h6").text(key[0].toUpperCase() + ": " + key[1] + "\n");    
+            });
+         });
+    }    
+
+//Function for Gauge chart
+function plotGaugechart(id) {
+    d3.json("samples.json").then (plotdata =>{
+
+    var metadata = plotdata.metadata; 
+    // filter meta data info by id
+    var result = metadata.filter(meta => meta.id.toString() === id)[0];
+        
+    console.log('result for gauge')    
+    console.log(metadata[0])    
+
+    // grab the necessary demographic data data for the id and append the info to the panel
+    Object.entries(result).forEach((key) => {   
+        wfreq = key[1];
+    });
+
+    var gdata = [
+        {
+            domain: { x: [0, 9], y: [0, 9] },
+            value: wfreq,
+            title: { text: "Belly Button Washing Frequency" },
+            type: "indicator",
+            mode: "gauge+number"
+        }
+    ];
+
+    var glayout = { width: 400, height: 300, margin: { t: 0, b: 0 } };
+    Plotly.newPlot("gauge", gdata, glayout);
+});
+}
+
+// create the function for the change event
 function optionChanged(id) {
     console.log(id)
     console.log('id has changed for new chart to print')
     plotBarBubblecharts(id);
     console.log('refreshed chart for new id successfully')
-}
+
+    //call fucntion for demo date
+    dispDemodata(id);
+
+    // plot bonus chart
+    plotGaugechart(id)
+
+ }
